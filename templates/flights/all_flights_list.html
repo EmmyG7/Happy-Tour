@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+	All Flights List - Admin View
+{% endblock title %}
+
+{% block content %}
+	<!-- SECTION: FLIGHTS -->
+    <div class="mt-5 mb-5 container">
+    	{% for flight in flight_list %}
+	    
+	    	<!--Panel-->
+	    	<div class="card w-75 mb-4">
+		        <div class="card-body">
+		            <h5 class="card-title">₹ {{ flight.price }}</h5>
+		            <p class="card-text">Cheapest flight from {{ flight.origin }} to {{ flight.destination }}</p>
+
+		            <a href="{% url 'admin-flight-details' flight.pk %}" class="btn {% if flight.has_departed %}btn-danger{% else %}btn-success{% endif %}">Details</a>
+
+		        </div>
+		        <div class="card-footer">
+		            <small class="text-muted">
+		            	{% if flight.has_departed %}
+		            		Departed...
+		            	{% else %}
+		            	 	Departure on {{ flight.get_departure_time }}...
+						{% endif %}
+		            </small>
+		        </div>
+			</div>
+			<!--/.Panel-->
+		
+		{% endfor %}
+	</div>
+
+	<!-- /SECTION: FLIGHTS -->
+{% endblock content %}

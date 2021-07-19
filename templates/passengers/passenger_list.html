@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Passengers List
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+	{% if user.is_authenticated %}
+
+		<table class="table">
+		  <thead class="grey white-text">
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Name of passenger</th>
+		      <th scope="col">Origin</th>
+		      <th scope="col">Destination</th>
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		{% for passenger in passenger_list %}
+		    <tr>
+		      <th scope="row">{{ forloop.counter }}</th>
+		      <td>
+		      	<a href="{% url 'passenger-detail' passenger.pk %}">
+		      		{{ passenger.passenger}}
+		      	</a>
+		      </td>
+		      <td>{{ passenger.flight.origin }}</td>
+		      <td>{{ passenger.flight.destination }}</td>
+		    </tr>
+		{% endfor %}
+		  </tbody>
+		
+		</table>
+
+	{% endif %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Signup
+{% endblock title %}
+
+{% block content %}
+	
+<div class="container mt-4">
+
+	<div class="row">
+
+		<div class="col-md-3"></div>
+
+		<div class="col-md-6">
+			<!-- Default form register -->
+			<form class="text-center border border-light p-5" method="post">
+				{% csrf_token %}
+
+			    <p class="h4 mb-4">Sign up</p>
+
+			{% for field in form %}
+			    <div class="form-row mb-2">
+			    	<p>{{ field.label_tag }}</p>
+			        <div class="col">
+			            <!-- First name -->
+			            {{ field }}
+			            {% if field.help_text %}
+				          <small class="text-grey">{{ field.help_text }}</small>
+				        {% endif %}
+				        {% for error in field.errors %}
+				          <p class="text-danger">{{ error }}</p>
+				        {% endfor %}
+			        </div>
+			    </div>
+			{% endfor %}
+
+				<button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
+
+			    <!-- Social register -->
+			    <p>or sign up with:</p>
+
+			    <a type="button" class="light-blue-text mx-2">
+			        <i class="fa fa-facebook"></i>
+			    </a>
+			    <a type="button" class="light-blue-text mx-2">
+			        <i class="fa fa-twitter"></i>
+			    </a>
+			    <a type="button" class="light-blue-text mx-2">
+			        <i class="fa fa-linkedin"></i>
+			    </a>
+			    <a type="button" class="light-blue-text mx-2">
+			        <i class="fa fa-github"></i>
+			    </a>
+
+			    <hr>
+
+			    <!-- Terms of service -->
+			    <p>By clicking
+			        <em>Sign up</em> you agree to our
+			        <a href="" target="_blank">terms of service</a> and
+			        <a href="" target="_blank">terms of service</a>. </p>
+
+			</form>
+			<!-- Default form register -->
+
+		<div class="col-md-3"></div>
+
+		</div>
+
+	</div>
+
+</div>
+
+{% endblock content %}
